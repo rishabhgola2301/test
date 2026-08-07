@@ -2637,6 +2637,7 @@
                   <span class="response-pill">Reply within 24 hours</span>
                 </div>
 
+                <!-- Formspree contact-form endpoint: xojygrng -->
                 <form id="consultationForm" action="https://formspree.io/f/xojygrng" method="POST">
                   <input type="hidden" name="_subject" value="New consultation request — TrustGate IT">
                   <input type="hidden" name="form_type" value="consultation">
@@ -2894,7 +2895,7 @@
 
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie choices">
     <h2>Optional analytics</h2>
-    <p>We use Google Analytics and Microsoft Clarity only after you accept, to understand site usage and improve the experience. Essential site features work without them.</p>
+    <p>We use Google Analytics and Microsoft Clarity only after you accept, to understand site usage and improve the experience. Live chat is provided by Tawk.to as a separate contact feature.</p>
     <div class="cookie-actions">
       <button class="button button-secondary" id="rejectCookies" type="button">Essential only</button>
       <button class="button button-primary" id="acceptCookies" type="button">Accept analytics</button>
@@ -2908,7 +2909,9 @@
       <div class="modal-body">
         <p>TrustGate IT uses information submitted through this website only to respond to enquiries, discuss services or process job applications. We do not sell contact information.</p>
         <h3>Contact forms</h3><p>Website forms are processed through Formspree. Please do not submit passwords, private keys, health information or other highly sensitive data through a website form.</p>
+        <h3>Live chat</h3><p>The website chat is provided by Tawk.to. When you open or use the chat, Tawk.to may process technical details and the information you enter so the conversation can be delivered to TrustGate IT.</p>
         <h3>Analytics</h3><p>Google Analytics 4 and Microsoft Clarity are optional. They load only after you choose “Accept analytics”. Your choice is stored in your browser so the site can remember it.</p>
+        
         <h3>Contact</h3><p>For privacy questions, email <a href="mailto:support@trustgateit.com">support@trustgateit.com</a>.</p>
         <h3>Microsoft trademark notice</h3><p>TrustGate IT is an independent Microsoft-focused consultancy. Microsoft, Microsoft 365, Azure, Entra, Intune, Defender, Purview, Sentinel and related product names are trademarks of Microsoft Corporation.</p>
       </div>
@@ -2916,6 +2919,33 @@
   </div>
 
   <noscript><div class="no-script"><div><h1>JavaScript is required for this website.</h1><p>Please enable JavaScript to use the service tabs and in-page Team and Careers navigation.</p></div></div></noscript>
+
+  <!-- TAWK.TO LIVE CHAT — TrustGate IT -->
+  <script type="text/javascript">
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+
+    window.Tawk_API.onChatStarted = function () {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "live_chat_started", { chat_provider: "tawk_to" });
+      }
+      if (typeof window.clarity === "function") {
+        window.clarity("set", "live_chat_started", "true");
+      }
+    };
+
+    (function () {
+      if (document.querySelector('script[data-trustgate-chat="tawk"]')) return;
+      var chatScript = document.createElement("script");
+      var firstScript = document.getElementsByTagName("script")[0];
+      chatScript.async = true;
+      chatScript.src = "https://embed.tawk.to/69f1c350ea08071c34098536/1jnc65t70";
+      chatScript.charset = "UTF-8";
+      chatScript.setAttribute("crossorigin", "*");
+      chatScript.setAttribute("data-trustgate-chat", "tawk");
+      firstScript.parentNode.insertBefore(chatScript, firstScript);
+    })();
+  </script>
 
   <script>
     (function () {
@@ -3076,7 +3106,9 @@
       const rejectCookies = document.getElementById("rejectCookies");
       const privacyModal = document.getElementById("privacyModal");
       const closePrivacy = document.getElementById("closePrivacy");
+      // Google Analytics 4 measurement ID retained from the previous website.
       const ANALYTICS_ID = "G-L2ZJM62WFS";
+      // Microsoft Clarity project ID retained from the previous website.
       const CLARITY_ID = "wj6obgfoqd";
 
       function enableAnalytics() {
